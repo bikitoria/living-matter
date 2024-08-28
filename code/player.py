@@ -33,74 +33,28 @@ class Player(pygame.sprite.Sprite):
         self.image = self.animations[self.status][int(self.frame_index)]
 
     def import_assets(self):
-        sprite_sheet_up_idle_image = pygame.image.load('graphics/Sprites/Zombie/Zombie_up_idle.png').convert_alpha()
-        sprite_sheet_up_idle = spritesheet.SpriteSheet(sprite_sheet_up_idle_image)
-        sprite_sheet_up_image = pygame.image.load('graphics/Sprites/Zombie/Zombie_up.png').convert_alpha()
-        sprite_sheet_up = spritesheet.SpriteSheet(sprite_sheet_up_image)
-
-        sprite_sheet_down_idle_image = pygame.image.load('graphics/Sprites/Zombie/Zombie_down_idle.png').convert_alpha()
-        sprite_sheet_down_idle_ = spritesheet.SpriteSheet(sprite_sheet_down_idle_image)
-        sprite_sheet_down_image = pygame.image.load('graphics/Sprites/Zombie/Zombie_down.png').convert_alpha()
-        sprite_sheet_down = spritesheet.SpriteSheet(sprite_sheet_down_image)
-
-        sprite_sheet_left_image = pygame.image.load('graphics/Sprites/Zombie/Zombie_left.png').convert_alpha()
-        sprite_sheet_left = spritesheet.SpriteSheet(sprite_sheet_left_image)
-        sprite_sheet_left_idle_image = pygame.image.load('graphics/Sprites/Zombie/Zombie_left_idle.png').convert_alpha()
-        sprite_sheet_left_idle = spritesheet.SpriteSheet(sprite_sheet_left_idle_image)
-
-        sprite_sheet_right_image = pygame.image.load('graphics/Sprites/Zombie/Zombie_right.png').convert_alpha()
-        sprite_sheet_right = spritesheet.SpriteSheet(sprite_sheet_right_image)
-        sprite_sheet_right_idle_image = pygame.image.load('graphics/Sprites/Zombie/Zombie_right_idle.png').convert_alpha()
-        sprite_sheet_right_idle = spritesheet.SpriteSheet(sprite_sheet_right_idle_image)
+        animation_paths = {
+            'up_idle': 'graphics/Sprites/Zombie/Zombie_up_idle.png',
+            'up': 'graphics/Sprites/Zombie/Zombie_up.png',
+            'down_idle': 'graphics/Sprites/Zombie/Zombie_down_idle.png',
+            'down': 'graphics/Sprites/Zombie/Zombie_down.png',
+            'left_idle': 'graphics/Sprites/Zombie/Zombie_left_idle.png',
+            'left': 'graphics/Sprites/Zombie/Zombie_left.png',
+            'right_idle': 'graphics/Sprites/Zombie/Zombie_right_idle.png',
+            'right': 'graphics/Sprites/Zombie/Zombie_right.png',
+        }
 
         self.animations = {
             'up_idle': [], 'down_idle': [], 'left_idle': [], 'right_idle': [],
             'up': [], 'down': [], 'left': [], 'right': []}
 
         for animation in self.animations.keys():
-            if animation == 'up_idle':
-                temp = []
-                for i in range(int(sprite_sheet_up_idle_image.get_width() / 32)):
-                    temp.append(sprite_sheet_up_idle.get_image(i, 32, 32, 3, (0, 0, 0)))
-                self.animations[animation] = temp
-            if animation == 'up':
-                temp = []
-                for i in range(int(sprite_sheet_up_image.get_width() / 32)):
-                    temp.append(sprite_sheet_up.get_image(i, 32, 32, 3, (0, 0, 0)))
-                self.animations[animation] = temp
-
-            if animation == 'down_idle':
-                temp = []
-                for i in range(int(sprite_sheet_down_idle_image.get_width() / 32)):
-                    temp.append(sprite_sheet_down_idle_.get_image(i, 32, 32, 3, (0, 0, 0)))
-                self.animations[animation] = temp
-            if animation == 'down':
-                temp = []
-                for i in range(int(sprite_sheet_down_image.get_width() / 32)):
-                    temp.append(sprite_sheet_down.get_image(i, 32, 32, 3, (0, 0, 0)))
-                self.animations[animation] = temp
-
-            if animation == 'left':
-                temp = []
-                for i in range(int(sprite_sheet_left_image.get_width() / 32)):
-                    temp.append(sprite_sheet_left.get_image(i, 32, 32, 3, (0, 0, 0)))
-                self.animations[animation] = temp
-            if animation == 'left_idle':
-                temp = []
-                for i in range(int(sprite_sheet_left_idle_image.get_width() / 32)):
-                    temp.append(sprite_sheet_left_idle.get_image(i, 32, 32, 3, (0, 0, 0)))
-                self.animations[animation] = temp
-
-            if animation == 'right':
-                temp = []
-                for i in range(int(sprite_sheet_right_image.get_width() / 32)):
-                    temp.append(sprite_sheet_right.get_image(i, 32, 32, 3, (0, 0, 0)))
-                self.animations[animation] = temp
-            if animation == 'right_idle':
-                temp = []
-                for i in range(int(sprite_sheet_right_idle_image.get_width() / 32)):
-                    temp.append(sprite_sheet_right_idle.get_image(i, 32, 32, 3, (0, 0, 0)))
-                self.animations[animation] = temp
+            temp = []
+            sprite_sheet_image = pygame.image.load(animation_paths[animation]).convert_alpha()
+            sprite_sheet = spritesheet.SpriteSheet(sprite_sheet_image)
+            for i in range(int(sprite_sheet_image.get_width() / 32)):
+                temp.append(sprite_sheet.get_image(i, 32, 32, 3, (0, 0, 0)))
+            self.animations[animation] = temp
 
     def input(self):
         keys = pygame.key.get_pressed()
