@@ -1,13 +1,9 @@
-# Entities can move, have animations, and they can collide with other entities/objects
-# It is wise to not inherit a lot, so implementations of interfaces (I know there aren't any in python just pretend)
-# that need entities should use a has a relationship
-
-import spritesheet
+import core.spritesheet as spritesheet
 import pygame
 from enum import Enum
 
 
-def __import_animation_assets(self: "Entity", anim_paths: dict[str, str]):
+def import_animation_assets(self: "Entity", anim_paths: dict[str, str]):
     """
     Imports the animations for the entity given a dictionary of animation names to paths
 
@@ -74,7 +70,7 @@ class Entity(pygame.sprite.Sprite):
         anim_paths: dict[str, str],
     ) -> None:
         super().__init__(group)
-        __import_animation_assets(self, anim_paths)
+        import_animation_assets(self, anim_paths)
         self.image = self.animations[self.movement_state][self.frame_index]
         self.rect = self.image.get_rect(center=starter_pos)
         self.direction = pygame.Vector2()
