@@ -26,20 +26,6 @@ class Player(Entity):
                 "right": "graphics/Sprites/Zombie/Zombie_right.png",
             },
         )
-        Entity(
-            pos,
-            group,
-            {
-                "up_idle": "graphics/Sprites/Zombie/Zombie_up_idle.png",
-                "up": "graphics/Sprites/Zombie/Zombie_up.png",
-                "down_idle": "graphics/Sprites/Zombie/Zombie_down_idle.png",
-                "down": "graphics/Sprites/Zombie/Zombie_down.png",
-                "left_idle": "graphics/Sprites/Zombie/Zombie_left_idle.png",
-                "left": "graphics/Sprites/Zombie/Zombie_left.png",
-                "right_idle": "graphics/Sprites/Zombie/Zombie_right_idle.png",
-                "right": "graphics/Sprites/Zombie/Zombie_right.png",
-            },
-        )
 
     def input(self):
         keys = pygame.key.get_pressed()
